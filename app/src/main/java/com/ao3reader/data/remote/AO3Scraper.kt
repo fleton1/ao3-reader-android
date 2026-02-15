@@ -45,7 +45,7 @@ class AO3Scraper @Inject constructor(
         rateLimiter.throttle {
             try {
                 val encodedQuery = java.net.URLEncoder.encode(query, "UTF-8")
-                val url = "$BASE_URL/works/search?work_search[query]=$encodedQuery&page=$page"
+                val url = "$BASE_URL/works/search?work_search[query]=$encodedQuery&page=$page&view_adult=true"
 
                 val document = fetchDocument(url)
                 val works = parseSearchResults(document)
