@@ -12,6 +12,7 @@ import com.ao3reader.domain.models.Work
 import com.ao3reader.domain.models.toDomain
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
 import javax.inject.Inject
@@ -88,12 +89,10 @@ class WorkRepository @Inject constructor(
 
         // Check cache first unless force refresh
         if (!forceRefresh) {
-            val cachedChapter = chapterDao.getChapterByNumber(workId, chapterNumber)
-            cachedChapter.collect { chapterEntity ->
-                if (chapterEntity != null) {
-                    emit(Resource.Success(chapterEntity.toDomain()))
-                    return@collect
-                }
+            val cachedChapter = chapterDao.getChapterByNumber(workId, chapterNumber).firstOrNull()
+            if (cachedChapter != null) {
+                emit(Resource.Success(cachedChapter.toDomain()))
+                return@flow
             }
         }
 
