@@ -1,8 +1,8 @@
 [versions]
 # Kotlin & Android
-kotlin = "2.0.21"
+kotlin = "2.1.0"
 androidGradlePlugin = "8.7.3"
-ksp = "2.0.21-1.0.29"
+ksp = "2.1.0-1.0.29"
 
 # AndroidX Core
 core-ktx = "1.15.0"
