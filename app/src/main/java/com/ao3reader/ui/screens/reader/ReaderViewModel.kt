@@ -10,6 +10,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -93,7 +94,8 @@ class ReaderViewModel @Inject constructor(
     private fun updateReadingProgress(chapterNumber: Int) {
         viewModelScope.launch {
             // Check if work is bookmarked
-            if (bookmarkRepository.isBookmarked(workId)) {
+            val isBookmarked = bookmarkRepository.isBookmarked(workId).firstOrNull() ?: false
+            if (isBookmarked) {
                 // Calculate progress
                 val totalChapters = _uiState.value.totalChapters
                 val progress = if (totalChapters > 0) {

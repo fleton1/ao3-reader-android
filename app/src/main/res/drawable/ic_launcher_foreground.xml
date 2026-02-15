@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <group
+        android:scaleX="0.8"
+        android:scaleY="0.8"
+        android:translateX="10.8"
+        android:translateY="10.8">
+        <!-- Book icon with "AO3" -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M20,10h60v75h-60z" />
+        <path
+            android:fillColor="#990000"
+            android:pathData="M25,15h50v65h-50z" />
+        <!-- Text "AO3" -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M32,35 L37,50 L42,35 L47,35 L40,55 L35,55 Z" />
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M50,40 Q50,35 55,35 Q60,35 60,40 L60,50 Q60,55 55,55 Q50,55 50,50 Z" />
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M63,45 Q63,35 70,35 Q77,35 77,42 L72,42 Q72,40 70,40 Q68,40 68,42 L68,48 Q68,50 70,50 Q72,50 72,48 L77,48 Q77,55 70,55 Q63,55 63,45 Z" />
+    </group>
+</vector>

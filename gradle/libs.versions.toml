@@ -23,6 +23,7 @@ jsoup = "1.18.3"
 # Dependency Injection
 hilt = "2.54"
 hilt-navigation-compose = "1.2.0"
+hilt-work = "1.2.0"
 
 # Coroutines
 coroutines = "1.10.1"
@@ -74,6 +75,7 @@ jsoup = { module = "org.jsoup:jsoup", version.ref = "jsoup" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
 hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hilt-navigation-compose" }
+hilt-work = { module = "androidx.hilt:hilt-work", version.ref = "hilt-work" }
 
 # Coroutines
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }

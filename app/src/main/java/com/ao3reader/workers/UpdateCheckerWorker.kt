@@ -37,16 +37,18 @@ class UpdateCheckerWorker @AssistedInject constructor(
 
         return try {
             // Check for updates
-            followingRepository.checkForUpdates()
-                .onSuccess { updateCount ->
+            val result = followingRepository.checkForUpdates()
+
+            result.fold(
+                onSuccess = { updateCount ->
                     if (updateCount > 0) {
                         // Show notification about updates
                         showUpdateNotification(updateCount)
                     }
 
                     Result.success()
-                }
-                .onFailure { error ->
+                },
+                onFailure = { error ->
                     // Retry on failure
                     if (runAttemptCount < 3) {
                         Result.retry()
@@ -54,7 +56,7 @@ class UpdateCheckerWorker @AssistedInject constructor(
                         Result.failure()
                     }
                 }
-                .getOrThrow()
+            )
 
         } catch (e: Exception) {
             // Retry on unexpected errors

@@ -66,8 +66,10 @@ class DownloadWorker @AssistedInject constructor(
             )
 
             // Download all chapters
-            ao3Scraper.getAllChapters(workId)
-                .onSuccess { chapterDtos ->
+            val result = ao3Scraper.getAllChapters(workId)
+
+            result.fold(
+                onSuccess = { chapterDtos ->
                     // Save chapters to database with progress updates
                     chapterDtos.forEachIndexed { index, chapterDto ->
                         val entity = chapterDto.toEntity()
@@ -109,8 +111,8 @@ class DownloadWorker @AssistedInject constructor(
                         KEY_PROGRESS to 1f,
                         KEY_DOWNLOADED_CHAPTERS to totalChapters
                     ))
-                }
-                .onFailure { error ->
+                },
+                onFailure = { error ->
                     // Mark download as failed
                     downloadDao.failDownload(
                         workId = workId,
@@ -121,7 +123,7 @@ class DownloadWorker @AssistedInject constructor(
                         "error" to (error.message ?: "Download failed")
                     ))
                 }
-                .getOrThrow()
+            )
 
         } catch (e: Exception) {
             // Handle unexpected errors
